@@ -27,20 +27,20 @@ public class Task2 {
     public static void main(String[] args) {
         Ticket ticket1 = new Ticket(7, "Misha");        // покупка билета
         Ticket ticket2 = new Ticket(3, "Katya");
+        Products products = new Products();
 
-        Products.buy(ticket1, new Empty("empty"), new Drink("milk"), new FoodAndDrinks("cheese", "tea"));   // докупка продуктов
-        Products.buy(ticket2, new Empty("empty"), null, new FoodAndDrinks("chicken", "lemonade"));    // O(n)
+        products.buy(ticket1, new Empty("empty"), new Drink("milk"), new FoodAndDrinks("cheese", "tea"));   // докупка продуктов
+        products.buy(ticket2, new Empty("empty"), null, new FoodAndDrinks("chicken", "lemonade"));    // O(1)
 
-        Products products1 = Products.getProducts(ticket1);     // поиск товаров по номеру билета
-        Products products2 = Products.getProducts(ticket2);     // O(n)
+        Products products1 = products.getProducts(ticket1);     // поиск товаров по номеру билета
+        Products products2 = products.getProducts(ticket2);     // O(1)
 
         System.out.println(products1);
         System.out.println(products2);
 
-        // HashMap - т.к. необходимо иметь и ключ, и значение. И получение по ключу для HashMap занимает O(1),
-        // если hashCode() реализован верно и корзин достаточно. При коллизиях - можно попадать всегда в одну корзину -> вырождаемся в связанный список -> O(n)
+        // HashMap - т.к. необходимо иметь и ключ, и значение. И получение по ключу для HashMap занимает O(1).
         // Выбирать LinkedHashMap | TreeMap нет смысла, т.к. порядок и сортировка нам не важны, а они ухудшают перфоманс.
 
-        // Result = O(n)
+        // Big O = O(1) + O(1) -> O(1)
     }
 }

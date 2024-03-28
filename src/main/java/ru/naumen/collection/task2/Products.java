@@ -10,8 +10,10 @@ public class Products {
     private Empty noProducts;
     private Drink drink;
     private FoodAndDrinks foodAndDrinks;
+    private Map<Long, Products> products = new HashMap<>();
 
-    private static Map<Long, Products> products = new HashMap<>();
+    public Products() {
+    }
 
     public Products(Empty noProducts, Drink drink, FoodAndDrinks foodAndDrinks) {
         this.noProducts = noProducts;
@@ -28,7 +30,7 @@ public class Products {
                '}';
     }
 
-    public static Products getProducts(Ticket ticket) {
+    public Products getProducts(Ticket ticket) {
         if (ticket == null) {
             throw new NoTicketFoundException("Необходимо предъявить билет!");
         }
@@ -36,7 +38,7 @@ public class Products {
         return products.get(ticket.getId());
     }
 
-    public static void buy(Ticket ticket, Empty noProducts, Drink drink, FoodAndDrinks foodAndDrinks) {
+    public void buy(Ticket ticket, Empty noProducts, Drink drink, FoodAndDrinks foodAndDrinks) {
         if (ticket == null) {
             throw new NoTicketFoundException("Необходимо предъявить билет!");
         }
